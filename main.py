@@ -72,13 +72,13 @@ while run:
                 else:                               # if TV is already on - turning it off
                     turn = False                    # video will stop by itself
                     channels[i][0].sound.stop()     # stopping it's sound
-                    channels[i][0].cap = cv2.VideoCapture(channels[i][0].video_path)    # recapture video because we need to play it from the beginning
+                    channels[i][0].recapture()      # recapture video because we need to play it from the beginning
                     pg.draw.rect(screen, colors['black'], (TV_POSX + 5, TV_POSY + 5, VID_WIDTH, VID_HEIGHT))    # drawing black screen on the TV's screen
                     
             for button in buttons1_9_0:     
                 if button.collidepoint(event.pos) and turn:     # if click was at one of the buttons1_9_0 and tv is on
                     channels[i][0].sound.stop()     # we are stopping pevious channel sound
-                    channels[i][0].cap = cv2.VideoCapture(channels[i][0].video_path)    # recapture it's video
+                    channels[i][0].recapture()      # recapture it's video
                     i = buttons1_9_0.index(button)  # change the channel to the channel that user clicked
                     channels[i][0].sound.play()     # and play it's sound
 
